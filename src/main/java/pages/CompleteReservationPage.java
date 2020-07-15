@@ -32,6 +32,16 @@ public class CompleteReservationPage extends PageBase {
         }
     }
 
+    public void addExistingGuest(String id) {
+        wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(addGuestButtons));
+        List<WebElement> addGuestButtonsList = webDriver.findElements(addGuestButtons);
+
+        for (WebElement addGuestButton : addGuestButtonsList) {
+            addGuestButton.click();
+            addGuestPage.addExistingGuest(id);
+        }
+    }
+
     public void clickSaveButton() {
         wait.until(ExpectedConditions.elementToBeClickable(saveButton));
         webDriver.findElement(saveButton).click();

@@ -30,6 +30,11 @@ public class AddGuestPage extends PageBase{
         clickSaveButton();
     }
 
+    public void addExistingGuest(String id){
+        enterCardId(id);
+        clickSearchButton();
+    }
+
     public void enterFirstName(){
         wait.until(ExpectedConditions.elementToBeClickable(firstNameField));
         webDriver.findElement(firstNameField).sendKeys("Guest"+idDigits);
@@ -42,8 +47,16 @@ public class AddGuestPage extends PageBase{
         wait.until(ExpectedConditions.elementToBeClickable(idCardField));
         webDriver.findElement(idCardField).sendKeys(idChars+String.valueOf(idDigits++));
     }
+    public void enterCardId(String id){
+        wait.until(ExpectedConditions.elementToBeClickable(idCardField));
+        webDriver.findElement(idCardField).sendKeys(id);
+    }
     public void clickSaveButton(){
         wait.until(ExpectedConditions.elementToBeClickable(saveGuestButton));
         webDriver.findElement(saveGuestButton).click();
+    }
+    public void clickSearchButton(){
+        wait.until(ExpectedConditions.elementToBeClickable(searchGuestByIdButton));
+        webDriver.findElement(searchGuestByIdButton).click();
     }
 }

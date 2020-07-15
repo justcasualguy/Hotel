@@ -4,10 +4,16 @@
 <suite name="Hotel tests">
     <test name="Reservation">
         <classes>
-            <class name="ReservationTest"></class>
+            <class name="TestBase"></class>
+<!--            <class name="ReservationTest"></class>-->
         </classes>
-
     </test>
 
+    <test name="ExistingGuestReservation">
+        <classes>
+            <class name="TestBase"></class>
+            <class name="ExistingGuetReservationTest"></class>
+        </classes>
+    </test>
 
 </suite>
