@@ -1,8 +1,5 @@
-import org.checkerframework.checker.units.qual.C;
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
-import org.testng.annotations.BeforeClass;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import pages.*;
 
 public class ReservationTest extends TestBase{
@@ -10,16 +7,17 @@ public class ReservationTest extends TestBase{
     ReceptionDeskPage receptionDeskPage;
     CompleteReservationPage completeReservationPage;
     ReservationsPage reservationsPage;
-    ReservationPage reservationPage;
+    ReservationDetailsPage reservationDetailsPage;
     @BeforeClass
     public void setup(){
         userHomePage = new UserHomePage(webDriver);
         receptionDeskPage = new ReceptionDeskPage(webDriver);
         completeReservationPage = new CompleteReservationPage(webDriver);
         reservationsPage = new ReservationsPage(webDriver);
-        reservationPage = new ReservationPage(webDriver);
+        reservationDetailsPage = new ReservationDetailsPage(webDriver);
     }
-    @Test
+   @Test(invocationCount = 1)
+  //  @Test
     public void reservationTest(){
 
         userHomePage.clickReceptionDeskButton();
@@ -32,13 +30,15 @@ public class ReservationTest extends TestBase{
         userHomePage.clickReservationsButton();
 
         boolean reservationExists = reservationsPage.findReservation(completeReservationPage.getRecentReservationId());
-
-        Assert.assertEquals(reservationExists,true);
+        if(reservationExists==false)
+            System.out.println("");
+        Assert.assertTrue(reservationExists);
     }
-    @AfterClass
+    @AfterMethod
     public void cleanup(){
         reservationsPage.clickReservation(completeReservationPage.getRecentReservationId());
-        reservationPage.clickDeleteButton();
-        reservationPage.clickConfirmDeleteButton();
+        reservationDetailsPage.clickDeleteButton();
+        reservationDetailsPage.clickConfirmDeleteButton();
+
     }
 }

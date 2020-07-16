@@ -12,7 +12,13 @@
     <test name="ExistingGuestReservation">
         <classes>
             <class name="TestBase"></class>
-            <class name="ExistingGuetReservationTest"></class>
+<!--            <class name="ExistingGuetReservationTest"></class>-->
+        </classes>
+    </test>
+
+    <test name="AddNewHoteTest">
+        <classes>
+            <class name="AddNewHotelTest"></class>
         </classes>
     </test>
 

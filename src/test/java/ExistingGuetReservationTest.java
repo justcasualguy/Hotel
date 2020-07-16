@@ -1,5 +1,5 @@
 import org.testng.Assert;
-import org.testng.annotations.AfterClass;
+import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.*;
@@ -9,7 +9,7 @@ public class ExistingGuetReservationTest extends TestBase {
     ReceptionDeskPage receptionDeskPage;
     CompleteReservationPage completeReservationPage;
     ReservationsPage reservationsPage;
-    ReservationPage reservationPage;
+    ReservationDetailsPage reservationDetailsPage;
 
     @BeforeClass
     public void setup() {
@@ -17,12 +17,13 @@ public class ExistingGuetReservationTest extends TestBase {
         receptionDeskPage = new ReceptionDeskPage(webDriver);
         completeReservationPage = new CompleteReservationPage(webDriver);
         reservationsPage = new ReservationsPage(webDriver);
-        reservationPage = new ReservationPage(webDriver);
+        reservationDetailsPage = new ReservationDetailsPage(webDriver);
     }
 
-    @Test
+    @Test(invocationCount = 3)
+   // @Test
     public void reservationTest() {
-
+        //webDriver.navigate().to(GlobalProperties.getProperty("homePageUrl"));
         userHomePage.clickReceptionDeskButton();
         receptionDeskPage.enterReservationDate();
         receptionDeskPage.clickCheckAvailability();
@@ -37,10 +38,10 @@ public class ExistingGuetReservationTest extends TestBase {
         Assert.assertEquals(reservationExists, true);
     }
 
-    @AfterClass
+    @AfterMethod
     public void cleanup() {
         reservationsPage.clickReservation(completeReservationPage.getRecentReservationId());
-        reservationPage.clickDeleteButton();
-        reservationPage.clickConfirmDeleteButton();
+        reservationDetailsPage.clickDeleteButton();
+        reservationDetailsPage.clickConfirmDeleteButton();
     }
 }

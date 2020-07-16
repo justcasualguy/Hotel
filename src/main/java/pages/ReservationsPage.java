@@ -1,6 +1,7 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -18,7 +19,13 @@ public class ReservationsPage extends PageBase {
     }
 
    public boolean findReservation(String id) {
-        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(reservationsRow));
+       try {
+           wait.until(ExpectedConditions.presenceOfElementLocated(reservationsTable));
+           wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(reservationsRow));
+       }
+       catch (StaleElementReferenceException e) {
+           System.out.println("Find reservation stale");
+       }
         String reservationXPath= PageBase.putStringInXPath(
                 XPaths.getXPath("reservationById"), id
         );

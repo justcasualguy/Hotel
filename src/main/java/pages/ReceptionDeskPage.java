@@ -7,9 +7,11 @@ import org.openqa.selenium.firefox.xpi.XpiDriverService;
 import org.openqa.selenium.interactions.Action;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.BeforeTest;
 import properties.XPaths;
 
+import java.time.Duration;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -38,13 +40,15 @@ public class ReceptionDeskPage extends PageBase{
     }
 
     public void enterBegginigDate(){
+        WebDriverWait wait = new WebDriverWait(webDriver, Duration.ofSeconds(30));
         Locale locale = new Locale("en");
         DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd-MMM-yyyy",locale);
         LocalDate localDate = LocalDate.now();
 
-        wait.until(ExpectedConditions.elementToBeClickable(
-           beginDatePicker
-        ));
+        PageBase.fluentWaitForElement(webDriver, beginDatePicker,
+                ExpectedConditions.presenceOfElementLocated(
+                        beginDatePicker
+                ));
 
         webDriver.findElement(beginDatePicker).sendKeys(
                 localDate.format(dateTimeFormatter)

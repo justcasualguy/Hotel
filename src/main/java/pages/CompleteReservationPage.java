@@ -1,8 +1,10 @@
 package pages;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.StaleElementReferenceException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import properties.XPaths;
 
@@ -18,7 +20,7 @@ public class CompleteReservationPage extends PageBase {
         super(webDriver);
         addGuestPage = new AddGuestPage(webDriver);
         addGuestButtons = By.xpath(XPaths.getXPath("addGuestButtons"));
-        saveButton = By.xpath(XPaths.getXPath("saveButton"));
+        saveButton = By.xpath(XPaths.getXPath("saveReservationButton"));
 
     }
 
@@ -30,6 +32,7 @@ public class CompleteReservationPage extends PageBase {
             addGuestButton.click();
             addGuestPage.addGuest();
         }
+
     }
 
     public void addExistingGuest(String id) {
@@ -40,12 +43,30 @@ public class CompleteReservationPage extends PageBase {
             addGuestButton.click();
             addGuestPage.addExistingGuest(id);
         }
+        PageBase.fluentWaitForElement(webDriver, saveButton,
+                ExpectedConditions.elementToBeClickable(
+                        webDriver.findElement(saveButton)
+                ));
     }
 
     public void clickSaveButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(saveButton));
-        webDriver.findElement(saveButton).click();
 
+        try {
+            PageBase.fluentWaitForElement(webDriver, saveButton,
+                    ExpectedConditions.elementToBeClickable(
+                            webDriver.findElement(saveButton)
+                    ));
+            webDriver.findElement(saveButton).click();
+        }catch (StaleElementReferenceException e){
+            System.out.println("Caught save button");
+            webDriver.findElement(saveButton).click();
+        }
+
+        setRecentReservationId();
+
+    }
+
+    public void setRecentReservationId() {
         wait.until(ExpectedConditions.presenceOfAllElementsLocatedBy(
                 By.xpath(XPaths.getXPath("reservationId")
                 )));

@@ -1,9 +1,9 @@
 package pages;
 
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.support.ui.WebDriverWait;
+import org.openqa.selenium.support.ui.*;
+import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.List;
@@ -28,6 +28,24 @@ public class PageBase {
             if (we.isDisplayed())
                 return we;
         return null;
+
     }
+
+    public static void fluentWaitForElement(WebDriver driver,By locator, ExpectedCondition expectedCondition){
+
+        Wait<WebDriver> wait = new FluentWait<>(driver)
+                .withTimeout(Duration.ofMinutes(1))
+                .pollingEvery(Duration.ofSeconds(5))
+                .ignoring(NoSuchElementException.class)
+                .ignoring(StaleElementReferenceException.class);
+        try {
+             wait.until(expectedCondition);
+        } catch (TimeoutException e){
+            Assert.fail("Element "+locator+ " not found");
+            throw new NullPointerException("Element is null");
+        }
+
+    }
+
 
 }
