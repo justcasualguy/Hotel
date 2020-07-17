@@ -1,12 +1,13 @@
-package pages;
+package pages.formPages;
 
 import models.Room;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.PageBase;
 import properties.XPaths;
 
-public class NewRoomFormPage extends PageBase{
+public class NewRoomFormPage extends PageBase {
     By roomNumber;
     By pricePerDay;
     By saveButton;
@@ -14,7 +15,7 @@ public class NewRoomFormPage extends PageBase{
         super(webDriver);
         roomNumber = By.xpath(XPaths.getXPath("roomNumberField"));
         pricePerDay = By.xpath(XPaths.getXPath("pricePerDayField"));
-        saveButton = By.xpath(XPaths.getXPath("saveObjectButton"));
+        saveButton = By.xpath(XPaths.getXPath("saveRecordButton"));
     }
 
     public void  enterRoomNumber(int i){

@@ -11,11 +11,14 @@ public class UserHomePage extends PageBase {
     By receptionDeskButton;
     By reservationsButton;
     By hotelsButton;
+    By guestsButton;
+
     public UserHomePage(WebDriver webDriver) {
         super(webDriver);
         receptionDeskButton = By.xpath(XPaths.getXPath("receptionDeskButton"));
         reservationsButton = By.xpath(XPaths.getXPath("reservationsButton"));
         hotelsButton = By.xpath(XPaths.getXPath("hotelsButton"));
+        guestsButton = By.xpath(XPaths.getXPath("guestsButton"));
     }
 
     public void clickReceptionDeskButton() {
@@ -30,18 +33,18 @@ public class UserHomePage extends PageBase {
     }
 
     public void clickReservationsButton() {
-        String preClickUrl = webDriver.getCurrentUrl();
-        while (webDriver.getCurrentUrl().equals(preClickUrl)) {
-            PageBase.fluentWaitForElement(webDriver, reservationsButton,
-                    ExpectedConditions.presenceOfElementLocated(
-                            reservationsButton
-                    ));
+//        String preClickUrl = webDriver.getCurrentUrl();
+//        while (webDriver.getCurrentUrl().equals(preClickUrl)) {
+//            PageBase.fluentWaitForElement(webDriver, reservationsButton,
+//                    ExpectedConditions.presenceOfElementLocated(
+//                            reservationsButton
+//                    ));
             PageBase.fluentWaitForElement(webDriver, reservationsButton,
                     ExpectedConditions.elementToBeClickable(
                             reservationsButton
                     ));
             webDriver.findElement(reservationsButton).click();
-        }
+      //  }
     }
     public void clickHotelsButton(){
         PageBase.fluentWaitForElement(webDriver,hotelsButton
@@ -49,5 +52,13 @@ public class UserHomePage extends PageBase {
         );
 
         webDriver.findElement(hotelsButton).click();
+    }
+
+    public void clickGuestsButton(){
+        PageBase.fluentWaitForElement(webDriver,guestsButton
+                ,ExpectedConditions.elementToBeClickable(guestsButton)
+        );
+
+        webDriver.findElement(guestsButton).click();
     }
 }

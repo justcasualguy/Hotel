@@ -4,21 +4,33 @@
 <suite name="Hotel tests">
     <test name="Reservation">
         <classes>
-            <class name="TestBase"></class>
+<!--            <class name="TestBase"></class>-->
 <!--            <class name="ReservationTest"></class>-->
         </classes>
     </test>
 
     <test name="ExistingGuestReservation">
         <classes>
-            <class name="TestBase"></class>
+<!--            <class name="TestBase"></class>-->
 <!--            <class name="ExistingGuetReservationTest"></class>-->
         </classes>
     </test>
 
     <test name="AddNewHoteTest">
         <classes>
-            <class name="AddNewHotelTest"></class>
+<!--            <class name="AddNewHotelTest"></class>-->
+        </classes>
+    </test>
+
+    <test name="AddNewGuestTest">
+        <classes>
+<!--            <class name="AddNewGuestTest"/>-->
+        </classes>
+    </test>
+
+    <test name="ReservationInfoTest">
+        <classes>
+            <class name="ReservationsInfoTest"/>
         </classes>
     </test>
 

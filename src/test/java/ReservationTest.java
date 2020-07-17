@@ -1,6 +1,8 @@
 import org.testng.Assert;
 import org.testng.annotations.*;
 import pages.*;
+import pages.detailPages.ReservationDetailsPage;
+import properties.GlobalProperties;
 
 public class ReservationTest extends TestBase{
     UserHomePage userHomePage;
@@ -19,15 +21,15 @@ public class ReservationTest extends TestBase{
    @Test(invocationCount = 1)
   //  @Test
     public void reservationTest(){
+       webDriver.navigate().to(GlobalProperties.getProperty("receptionDeskUrl"));
 
-        userHomePage.clickReceptionDeskButton();
         receptionDeskPage.enterReservationDate();
         receptionDeskPage.clickCheckAvailability();
         receptionDeskPage.selectFirstHotelWithPrice();
         receptionDeskPage.clickMakeReservation();
         completeReservationPage.addGuests();
         completeReservationPage.clickSaveButton();
-        userHomePage.clickReservationsButton();
+       webDriver.navigate().to(GlobalProperties.getProperty("reservationsUrl"));
 
         boolean reservationExists = reservationsPage.findReservation(completeReservationPage.getRecentReservationId());
         if(reservationExists==false)

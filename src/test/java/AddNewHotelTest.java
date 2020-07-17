@@ -5,6 +5,10 @@ import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
 import pages.*;
+import pages.detailPages.HotelDetailsPage;
+import pages.formPages.NewHotelFormPage;
+import pages.formPages.NewRoomFormPage;
+import properties.GlobalProperties;
 
 public class AddNewHotelTest extends TestBase {
     Hotel hotel;
@@ -32,7 +36,7 @@ public class AddNewHotelTest extends TestBase {
 
     @Test
     public void addHotelTest() {
-        userHomePage.clickHotelsButton();
+        webDriver.navigate().to(GlobalProperties.getProperty("hotelsUrl"));
         hotelsPage.clickNewButton();
         newHotelFormPage.addHotel(hotel);
         hotelDetailsPage.addRooms(hotel.getRooms());
@@ -45,8 +49,9 @@ public class AddNewHotelTest extends TestBase {
 
 
         Assert.assertEquals(
-                hotelDetailsPage.getRoomsCount(),hotel.getRooms().size(),"Rooms assert"
+                createdHotel,hotel,"Hotel assert"
         );
+
     }
 
     @AfterMethod

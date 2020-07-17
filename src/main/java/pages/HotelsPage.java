@@ -10,7 +10,7 @@ public class HotelsPage extends PageBase{
 
     public HotelsPage(WebDriver webDriver) {
         super(webDriver);
-        newButton = By.xpath(XPaths.getXPath("newHotelButton"));
+        newButton = By.xpath(XPaths.getXPath("newRecordButton"));
     }
 
     public void clickNewButton(){

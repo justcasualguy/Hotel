@@ -25,10 +25,14 @@ public class AddGuestPage extends PageBase {
         saveGuestButton = By.xpath(XPaths.getXPath("saveGuestButton"));
     }
 
-    public void addGuest() {
+    public void enterGuestInfo(){
         enterFirstName();
         enterLastName();
         enterCardId();
+    }
+
+    public void addGuest() {
+       enterGuestInfo();
         clickSaveButton();
 
         wait.until(ExpectedConditions.numberOfElementsToBe(saveGuestButton, 0));
@@ -75,7 +79,8 @@ public class AddGuestPage extends PageBase {
     }
 
     public void clickSaveButton() {
-        wait.until(ExpectedConditions.elementToBeClickable(saveGuestButton));
+        fluentWaitForElement(webDriver,saveGuestButton,
+                ExpectedConditions.elementToBeClickable(saveGuestButton));
         webDriver.findElement(saveGuestButton).click();
     }
 

@@ -1,15 +1,17 @@
-package pages;
+package pages.detailPages;
 
 import models.Room;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.ExpectedConditions;
+import pages.PageBase;
+import pages.formPages.NewRoomFormPage;
 import properties.XPaths;
 
 import java.util.List;
 
-public class HotelDetailsPage extends PageBase{
+public class HotelDetailsPage extends PageBase {
     By newRoomButton;
     By hotelName;
     By city;
@@ -42,7 +44,7 @@ public class HotelDetailsPage extends PageBase{
 
         Actions actions = new Actions(webDriver);
         actions.moveToElement(webDriver.findElement(newRoomButton)).click().perform();
-        By newRoomForm = By.xpath(XPaths.getXPath("newObjectForm"));
+        By newRoomForm = By.xpath(XPaths.getXPath("newRecordForm"));
 
         PageBase.fluentWaitForElement(
                 webDriver,
