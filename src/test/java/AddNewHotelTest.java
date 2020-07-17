@@ -49,7 +49,7 @@ public class AddNewHotelTest extends TestBase {
 
 
         Assert.assertEquals(
-                createdHotel,hotel,"Hotel assert"
+                createdHotel.toString(),hotel.toString(),"Hotel assert"
         );
 
     }

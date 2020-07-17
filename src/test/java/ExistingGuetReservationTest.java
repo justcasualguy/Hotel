@@ -33,7 +33,7 @@ public class ExistingGuetReservationTest extends TestBase {
         receptionDeskPage.clickMakeReservation();
         completeReservationPage.addExistingGuest("abc123457");
         completeReservationPage.clickSaveButton();
-        webDriver.navigate().to(GlobalProperties.getProperty("receptionDeskUrl"));
+        webDriver.navigate().to(GlobalProperties.getProperty("reservationsUrl"));
 
         boolean reservationExists = reservationsPage.findReservation(completeReservationPage.getRecentReservationId());
 

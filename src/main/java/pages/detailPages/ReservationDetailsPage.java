@@ -37,14 +37,16 @@ public class ReservationDetailsPage extends PageBase {
 
     public void clickDeleteButton(){
         fluentWaitForElement(webDriver,deleteButton,
-                ExpectedConditions.numberOfElementsToBe(deleteButton,3));
-       // wait.until(ExpectedConditions.elementToBeClickable(deleteButton));
+                ExpectedConditions.presenceOfAllElementsLocatedBy(deleteButton));
+        fluentWaitForElement(webDriver,deleteButton,
+                ExpectedConditions.numberOfElementsToBeMoreThan(deleteButton,0));
+
         findFirstDisplayed(webDriver.findElements(deleteButton)).click();
     }
     public void clickConfirmDeleteButton(){
         fluentWaitForElement(webDriver,confirmDeleteButton,
                 ExpectedConditions.elementToBeClickable(confirmDeleteButton));
-        //wait.until(ExpectedConditions.elementToBeClickable(confirmDeleteButton));
+
 
         webDriver.findElement(confirmDeleteButton).click();
         wait.until(ExpectedConditions.visibilityOfElementLocated(confirmationToast));

@@ -33,6 +33,16 @@ public class Hotel {
     }
 
     @Override
+    public String toString() {
+        return "Hotel{" +
+                "name='" + name + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                ", zipCode='" + zipCode + '\'' +
+                '}';
+    }
+
+    @Override
     public int hashCode() {
         return Objects.hash(name, city, street, zipCode);
     }

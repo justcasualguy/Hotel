@@ -2,29 +2,30 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 
 <suite name="Hotel tests">
+
     <test name="Reservation">
         <classes>
-<!--            <class name="TestBase"></class>-->
-<!--            <class name="ReservationTest"></class>-->
+            <class name="TestBase"></class>
+            <class name="ReservationTest"></class>
         </classes>
     </test>
 
     <test name="ExistingGuestReservation">
         <classes>
 <!--            <class name="TestBase"></class>-->
-<!--            <class name="ExistingGuetReservationTest"></class>-->
+            <class name="ExistingGuetReservationTest"></class>
         </classes>
     </test>
 
     <test name="AddNewHoteTest">
         <classes>
-<!--            <class name="AddNewHotelTest"></class>-->
+            <class name="AddNewHotelTest"></class>
         </classes>
     </test>
 
     <test name="AddNewGuestTest">
         <classes>
-<!--            <class name="AddNewGuestTest"/>-->
+            <class name="AddNewGuestTest"/>
         </classes>
     </test>
 
